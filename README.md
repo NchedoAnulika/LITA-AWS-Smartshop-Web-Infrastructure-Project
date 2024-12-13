@@ -57,22 +57,22 @@ The estimated monthly cost for running the SmartShop web infrastructure on AWS i
 
 ## Screenshots
 - **EC2 Instance Details**:
-  ![EC2 Instance Details](/EC2 Instance.png)
+  ![EC2 Instance Details](/EC2_Instance.png)
 
 - **VPC Configuration**:
   ![VPC Configuration](/VPC.png")
 
 - **Security Group**:
-  ![Security Group](/EC2 Instance Security group.png)
+  ![Security Group](/EC2_Instance_Security_group.png)
 
 - **Private Subnet**:
-  ![Private Subnet](/Private subnet.png)
+  ![Private Subnet](/Private_subnet.png)
 
 - **Public Subnet**:
-  ![Public Subnet](/Public subnet.png)
+  ![Public Subnet](/Public_subnet.png)
 
 - **Apache Test Page**:
-  ![Apache Test Page](/Apache Test page.png)
+  ![Apache Test Page](/Apache_Test_page.png)
 
 
 
