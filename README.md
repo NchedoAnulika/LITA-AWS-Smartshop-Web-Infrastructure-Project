@@ -2,52 +2,83 @@
  Building a scalable and secure web infrastructure on AWS for SmartShop, a fictional retail company. This project includes EC2 instance setup, VPC configuration, security best practices, and monitoring solutions to ensure high availability and performance.
 # SmartShop Web Infrastructure Project
 
-## Project Overview
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Objectives](#objectives)
+3. [AWS Services Utilized](#aws-services-utilized)
+4. [Project Tasks](#project-tasks)
+   - [Configure a Custom VPC](#configure-a-custom-vpc)
+   - [Launch an EC2 Instance with Apache Web Server](#launch-an-ec2-instance-with-apache-web-server)
+5. [Cost Analysis](#cost-analysis)
+6. [Future Work](#future-work)
+7. [Screenshots](#screenshots)
+8. [License](#license)
 
-SmartShop is a fictional mid-sized retail company launching an online store. To support increased web traffic and ensure a smooth customer experience, we have designed a scalable and reliable web infrastructure on AWS.
+## Project Overview
+SmartShop is a fictional retail company expanding into online sales. This project aims to design and deploy a scalable web infrastructure on AWS, ensuring high availability, security, and performance.
 
 ## Objectives
-
-- **Scalable Resource Allocation**: Support anticipated growth with flexible resource management.
-- **High Availability**: Ensure consistent user experience across various traffic loads.
-- **Security**: Implement strong measures to protect customer data.
-- **Cost-Effectiveness**: Optimize performance while minimizing operational costs.
+- Support anticipated growth with flexible resource allocation.
+- Ensure high availability and consistent user experience.
+- Implement strong security measures to protect customer data.
+- Be cost-effective and optimized for performance.
 
 ## AWS Services Utilized
-
 - **Amazon EC2**: Hosting the scalable web application.
-- **Amazon VPC**: Isolating the network environment for better security.
+- **Amazon VPC**: Isolating the network environment.
 - **Amazon CloudWatch**: Monitoring resources and setting up alerts.
-- **AWS CloudTrail**: Auditing AWS API calls for security compliance.
+- **AWS CloudTrail**: Auditing AWS API calls.
 
 ## Project Tasks
 
-1. **Launch EC2 Instances**
-   - Selected an appropriate Amazon Machine Image (AMI) and launched instances within the chosen VPC.
-   - Installed and configured a web server (Apache/Nginx) and deployed the SmartShop web application.
+### Configure a Custom VPC
+A custom Virtual Private Cloud (VPC) was created to host the SmartShop infrastructure. The VPC has an IPv4 CIDR block of `10.0.0.0/16`. Within this VPC, two subnets were established:
+- **Public Subnet**: CIDR `10.0.1.0/24`
+- **Private Subnet**: CIDR `10.0.2.0/24`
 
-2. **Set Up a Virtual Private Cloud (VPC)**
-   - Created a new VPC with public and private subnets across multiple Availability Zones.
-   - Configured Internet Gateways and Route Tables for traffic management.
+An Internet Gateway was added and attached to the VPC, enabling internet access. A route table was created for the public subnet with a route directing traffic to `0.0.0.0/0` via the Internet Gateway. Network Access Control Lists (NACLs) were configured to allow inbound HTTP (port 80) and SSH (port 22) traffic.
 
-3. **Configure Security Groups**
-   - Created Security Groups to control inbound and outbound traffic.
-   - Allowed HTTP (port 80) and HTTPS (port 443) while restricting SSH (port 22) access.
+Security Groups were set up to manage access to the EC2 instances, allowing inbound HTTP from anywhere and SSH access restricted to specific IP addresses.
 
-4. **Implement Security Best Practices**
-   - Used Network Access Control Lists (NACLs) for additional subnet-level security.
+### Launch an EC2 Instance with Apache Web Server
+An EC2 instance named `nchedochukwuarinzechukwu_lita` was launched using Amazon Linux 2 with a t2.micro instance type, configured in the public subnet. A key pair named `MyKeyPair` was created for secure SSH access.
 
-5. **Enable Monitoring and Logging**
-   - Set up CloudWatch for monitoring key metrics and established alerts for critical events.
-   - Utilized AWS CloudTrail for auditing API calls.
+After configuring the network settings to enable auto-assigning a public IP, the instance was launched successfully. 
 
-## Documentation
+## Cost Analysis
+The estimated monthly cost for running the SmartShop web infrastructure on AWS is approximately $15-$25, depending on usage patterns. This includes costs for EC2 instance usage, data transfer, and storage. Cost-optimization strategies include:
 
-- Comprehensive documentation includes configurations for VPC settings, security groups, IAM roles, and scaling policies.
-- A cost analysis has been conducted to estimate monthly AWS costs, with suggestions for cost-optimization strategies.
+- Utilizing AWS Free Tier services where applicable.
+- Monitoring usage with AWS CloudWatch to adjust resources as needed.
 
-## Expected Outcomes
+## Future Work
+- Explore further scalability options and performance optimizations.
+- Implement additional features based on user feedback.
 
-- A fully functional web application infrastructure tailored to SmartShop's needs.
-- Documentation and a professional presentation for stakeholders.
-- Hands-on experience with essential AWS services.
+## Screenshots
+- **EC2 Instance Details**:
+  ![EC2 Instance Details](/EC2 Instance.png)
+
+- **VPC Configuration**:
+  ![VPC Configuration](/VPC.png")
+
+- **Security Group**:
+  ![Security Group](/EC2 Instance Security group.png)
+
+- **Private Subnet**:
+  ![Private Subnet](/Private subnet.png)
+
+- **Public Subnet**:
+  ![Public Subnet](/Public subnet.png)
+
+- **Apache Test Page**:
+  ![Apache Test Page](/Apache Test page.png)
+
+
+
+To install the Apache web server, the following commands were executed via SSH:
+```bash
+sudo yum update -y
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
