@@ -60,7 +60,7 @@ The estimated monthly cost for running the SmartShop web infrastructure on AWS i
   ![EC2 Instance Details](/EC2_Instance.png)
 
 - **VPC Configuration**:
-  ![VPC Configuration](/VPC.png")
+  ![VPC Configuration](/VPC.png)
 
 - **Security Group**:
   ![Security Group](/EC2_Instance_Security_group.png)
